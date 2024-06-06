@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IEdge">
+  <meta name="viewport" content="width=device-width, intial-scale=1.0">
+<head>
+  <title>To-Do List App</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" type="text/css" href="task.css">
+</head>
+<body>
+  <div id="todo-app">
+    <div class="heading"> To Do List </div>
+      <section class="greeting" >
+        <h2 class="title" >What's Up,<input type="text" id="Name" placeholder="Name here">
+        </h2>
+      </section><br><br>
+      <section class="create-todo">
+        <h3> Create your tasks.. </h3>
+    <input type="text" id="task-input" placeholder="Enter task" onkeyup="checkEnter(event)">
+    <button id="add-task" onclick="addTask()">Add Task</button>
+    <ul id="task-list">
+    </ul>
+  </div>
+
+<script>
+const taskInput = document.getElementById("task-input");
+const taskList = document.getElementById("task-list");
+
+// initially displaying tasks when page loads for first time
+displayTaskList();
+
+// adding tasks to list
+function addTask() {
+  taskText = taskInput.value.trim();
+  var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  if (taskText !== "") {
+    tasks.push({ text: taskText, completed: false });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    taskInput.value = "";
+    displayTaskList();
+  }
+}
+
+// function to add task by clicking enter key
+function checkEnter(event) {
+      if (event.key === 'Enter') {
+        addTask();
+      }
+    }
+
+// function to display tasks
+function displayTaskList(){
+    var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    //emptying list to avoid repetition
+    taskList.innerHTML = "";
+  
+    if(tasks.length !== 0){
+      for(var i = 0; i < tasks.length; i++){
+        const listItem = document.createElement("li");
+        listItem.innerHTML= `
+          <input type="checkbox" class="checkbox" onchange="markTaskComplete('${i}')" ${tasks[i].completed ? 'checked' : ''}>
+          <div class="${tasks[i].completed ? 'disabled-li' : 'task-text'}" > ${tasks[i].text} </div>
+          <div class="icon-container">
+          <span class="material-symbols-outlined edit-icon" onclick="editTask('${i}')">edit </span>
+            <span class="material-symbols-outlined delete-icon"                             onclick="deleteTask('${i}')">delete</span>
+           </div>
+        `;
+
+        // adding task to taskList
+        taskList.appendChild(listItem);
+      }
+    }
+}
+
+function markTaskComplete(index){
+  var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+   tasks[index].completed = !tasks[index].completed;
+  
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+    displayTaskList();
+}
+
+// function for removing tasks from list
+function deleteTask(index){
+  var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  if(index !== -1){
+    tasks.splice(index, 1);
+    
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    displayTaskList();
+  }
+}
+
+// function for editing task content
+function editTask(index){
+  var tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  var newText = prompt('Edit task:', tasks[index].text); 
+  
+  if(newText !== null){
+     tasks[index].text = newText;
+     }
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  displayTaskList();
+}
+</script>
+</body>
+</html>

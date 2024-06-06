@@ -1,0 +1,150 @@
+﻿body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to right,pink,#c7a4eb);
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+.heading {
+  color:#9b74c2;
+  font-family:"dancing script",cursive;
+  text-shadow: 2px 4px #cc97bd;
+  font-size: 44px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#todo-app {
+  width: 400px;
+  height: 500px;
+  padding: 20px;
+  background-color: #fafafa;
+  box-shadow: 0 10px 10px grey;
+  border-radius:30px;
+  border-color:8px solid black;
+  
+}
+
+#task-input {
+  width: 70%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #d0a2f7;
+  border-radius: 10px;
+  font-family: cursive;
+  font-size: 20px;
+}
+
+#add-task {
+  padding: 10px 20px;
+  background-color: hotpink;
+   box-shadow: 0 5px 10px grey;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius:20px;
+ 
+}
+input:focus {
+  outline: none;
+}
+#add-task:hover {
+  background-color: skyblue;  
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  height: 335px;
+  overflow-y: auto;
+  margin-top:25px;
+}
+ul::-webkit-scrollbar {
+  width: auto; 
+}
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: cursive;
+  font-size: 18px;
+  border-bottom: 2px solid #d0a2f7;
+  border-radius:20px;
+}
+
+.task-text {
+  color: #622a7a;
+  font-family: cursive;
+  font-size: 18pxpx;
+  width: 340px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+.icon-container {
+  display:flex;
+  width:62px;
+  gap:8px;
+  padding-left: 10px;
+  justify-content:right;
+  align-items:center;
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  cursor: pointer;
+}
+.delete-icon{
+  color:#db1873;
+}
+.delete-icon:hover{
+  color:black;
+}
+.edit-icon{
+  color: #8a56a8;
+}
+.edit-icon:hover{
+  color:black;
+}
+.checkbox {
+  color:purple;
+  margin-right: 8px;
+}
+.disabled-li {
+  color: #9c989a;
+  font-family: arial,sans-serif;
+  font-size: 20px;
+  width: 340px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+.greeting {
+  color: #622a7a;
+  opacity:0.6;
+  font-family: arial;
+  font-size: 20px;
+  font-weight:900;
+  width: 540px;
+  text-shadow:2px 5px #bcb6bf;
+}
+h3{
+  color:purple;
+  opacity:0.6;
+  text-shadow:5px 5px #e5dfe8;
+}
+.greeting .title{
+  display:flex;
+}
+.greeting .title input{
+  opacity:0.6;
+  border:none;
+  font-size:24px;
+  font-weight:900;
+  width:280px;
+  background-color:transparent;
+  font-family:sans-serif,cursive;
+}
